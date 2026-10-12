@@ -1,4 +1,5 @@
-name: Auto Sign
+# schedule re-register test 2026-10-12
+name: Auto Sig
 
 on:
   schedule:
