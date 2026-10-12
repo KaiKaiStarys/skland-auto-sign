@@ -1,11 +1,11 @@
-# schedule re-register test 2026-10-12
-name: Auto Sig
+name: Auto Sign
 
 on:
   schedule:
-    # 【探针·临时】UTC 每小时第 13 分 = 北京时间每小时第 13 分
-    # 验证 schedule 通道能正常触发后，立刻改回 '13 20 * * *'
-    - cron: '13 * * * *'workflow_dispatch:
+    # UTC 20:13 / 21:13 / 22:13 / 23:13
+    # = 北京时间 04:13 / 05:13 / 06:13 / 07:13
+    - cron: '13 20,21,22,23 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
