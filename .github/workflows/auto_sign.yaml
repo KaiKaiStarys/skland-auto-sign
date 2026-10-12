@@ -5,8 +5,7 @@ on:
   schedule:
     # 【探针·临时】UTC 每小时第 13 分 = 北京时间每小时第 13 分
     # 验证 schedule 通道能正常触发后，立刻改回 '13 20 * * *'
-    - cron: '13 * * * *'
-  workflow_dispatch:
+    - cron: '13 * * * *'workflow_dispatch:
 
 permissions:
   contents: read
