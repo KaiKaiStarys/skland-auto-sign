@@ -1,29 +1,37 @@
-# run main.py
 name: Auto Sign
+
 on:
   schedule:
-    - cron: '40 4 * * *'
+    # 【探针·临时】UTC 每小时第 13 分 = 北京时间每小时第 13 分
+    # 验证 schedule 通道能正常触发后，立刻改回 '13 20 * * *'
+    - cron: '13 * * * *'
   workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v4
+
       - name: Set up Python 3.13
-        uses: actions/setup-python@v7
+        uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install requests
           pip install cryptography
+
       - name: Run main.py
         env:
-          GitHub_Actions: true
+          Github_Actions: true
           TOKEN: ${{ secrets.TOKEN }}
           SC3_SENDKEY: ${{ secrets.SC3_SENDKEY }}
           SC3_UID: ${{ secrets.SC3_UID }}
           EXIT_WHEN_FAIL: ${{ vars.EXIT_WHEN_FAIL }}
-        run: |
-          python src/main.py
+        run: python src/main.py
