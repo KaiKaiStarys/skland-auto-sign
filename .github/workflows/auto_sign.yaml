@@ -1,6 +1,9 @@
 name: Auto Sign
 
 on:
+  schedule:
+    # 兜底用（Cloudflare 为主力）
+    - cron: '13 20,21,22,23 * * *'
   workflow_dispatch:
 
 permissions:
